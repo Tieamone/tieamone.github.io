@@ -1,0 +1,99 @@
+---
+import { site } from '../config/site';
+
+const githubDisplay = site.github.replace(/^https?:\/\//, '');
+const coreStack = ['Java', 'Spring Boot', 'Android', 'Vue 3', 'MySQL'];
+---
+
+<section class="hero" id="home">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <!-- 左栏：信息 -->
+    <div class="hero-left">
+      <div class="hero-tag">
+        <span class="dot"></span>
+        {site.availability}
+      </div>
+
+      <h1 class="hero-title">
+        <span class="hero-hi">Hi, I'm</span>
+        <span class="name-accent">{site.name}</span>
+      </h1>
+
+      <p class="hero-role"><span id="typed-role"></span><span class="cursor"></span></p>
+
+      <p class="hero-desc">
+        全栈开发者，专注 Android 原生与 Spring Boot 后端。热衷于构建完整的产品闭环——从数据库设计到移动端交互，独立完成整个技术链路。
+      </p>
+
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-primary">查看项目</a>
+        <a href="/blog" class="btn btn-ghost">阅读博客</a>
+      </div>
+
+      <div class="hero-links">
+        <a href={site.github} target="_blank" rel="noopener noreferrer" class="hero-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          {githubDisplay}
+        </a>
+        <a href={`mailto:${site.email}`} class="hero-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          邮箱
+        </a>
+      </div>
+
+      <div class="hero-stack">
+        {coreStack.map((s) => <span class="stack-chip">{s}</span>)}
+      </div>
+    </div>
+
+    <!-- 右栏：代码终端卡片 -->
+    <div class="hero-right">
+      <div class="terminal" aria-hidden="true">
+        <div class="terminal-bar">
+          <span class="term-dot r"></span>
+          <span class="term-dot y"></span>
+          <span class="term-dot g"></span>
+          <span class="term-title">~/profile</span>
+        </div>
+        <pre class="terminal-body"><code><span class="c-muted">// developer profile</span>
+<span class="c-key">const</span> <span class="c-var">dev</span> = {
+  <span class="c-prop">name</span>: <span class="c-str">'龚曦'</span>,
+  <span class="c-prop">role</span>: <span class="c-str">'Full-Stack Engineer'</span>,
+  <span class="c-prop">focus</span>: [<span class="c-str">'Java'</span>, <span class="c-str">'Android'</span>, <span class="c-str">'Spring'</span>],
+  <span class="c-prop">status</span>: <span class="c-str">'available'</span>,
+  <span class="c-prop">location</span>: <span class="c-str">'武汉 · 26届'</span>,
+};
+
+<span class="c-fn">build</span>(<span class="c-var">dev</span>) <span class="c-muted">// shipping 🚀</span></code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ phrases: site.typingPhrases }}>
+  // 打字动画（仅职业定位一行）
+  let pIdx = 0, cIdx = 0, deleting = false;
+  const el = document.getElementById('typed-role');
+
+  function type() {
+    if (!el) return;
+    const current = phrases[pIdx];
+    if (!deleting) {
+      el.textContent = current.slice(0, ++cIdx);
+      if (cIdx === current.length) {
+        deleting = true;
+        setTimeout(type, 1800);
+        return;
+      }
+    } else {
+      el.textContent = current.slice(0, --cIdx);
+      if (cIdx === 0) {
+        deleting = false;
+        pIdx = (pIdx + 1) % phrases.length;
+      }
+    }
+    setTimeout(type, deleting ? 60 : 90);
+  }
+  type();
+</script>

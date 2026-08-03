@@ -1,0 +1,27 @@
+---
+import { education } from '../data/resume';
+---
+
+<section id="education">
+  <div class="section-tag">05 &nbsp; education</div>
+  <h2>教育背景</h2>
+
+  <div class="edu-card fade-in">
+    <div>
+      <div class="edu-school">{education.school}</div>
+      <div class="edu-degree">{education.degree}</div>
+      <div class="edu-rank">{education.rank}</div>
+      <div class="edu-note">{education.note}</div>
+      <div class="edu-courses-label">// 主修课程</div>
+      <div class="edu-courses">
+        {education.courses.map((course) => (
+          <span class="edu-course">{course}</span>
+        ))}
+      </div>
+    </div>
+    <div>
+      <div class="edu-year">{education.year}</div>
+      <div class="edu-cohort">{education.cohort}</div>
+    </div>
+  </div>
+</section>

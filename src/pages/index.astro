@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Skills from '../components/Skills.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Experience from '../components/Experience.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import { projects } from '../data/projects';
+import { experience } from '../data/resume';
+import { getPublishedPosts, getReadingTime, formatDate } from '../utils/blog';
+
+// 精选项目：featured 优先，最多 3 个
+const featuredProjects = projects.filter((p) => p.featured).concat(
+  projects.filter((p) => !p.featured)
+).slice(0, 3);
+
+// 最新文章：最多 3 篇
+const latestPosts = (await getPublishedPosts()).slice(0, 3);
+
+// 经历摘要：首页只取最近 1 条
+const latestExperience = experience.slice(0, 1);
+---
+
+<BaseLayout>
+  <Header />
+  <Hero />
+
+  <div class="section-divider"></div>
+  <About />
+
+  <div class="section-divider"></div>
+  <Skills />
+
+  <div class="section-divider"></div>
+  <section id="projects">
+    <div class="section-tag">03 &nbsp; featured projects</div>
+    <h2>精选项目</h2>
+
+    <div class="projects-grid">
+      {featuredProjects.map((project) => <ProjectCard project={project} />)}
+    </div>
+
+    <div class="section-more">
+      <a href="/projects" class="more-link">查看全部项目 →</a>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+  <section id="latest-posts">
+    <div class="section-tag">04 &nbsp; latest writing</div>
+    <h2>最新文章</h2>
+
+    <div class="blog-list">
+      {latestPosts.length === 0 ? (
+        <div class="empty-state">// 暂无文章，敬请期待</div>
+      ) : latestPosts.map((post) => (
+        <a class="blog-card fade-in" href={`/blog/${post.id}`}>
+          <div class="blog-card-title">{post.data.title}</div>
+          <div class="blog-card-desc">{post.data.description}</div>
+          <div class="blog-card-meta">
+            <span>{formatDate(post.data.publishedAt)}</span>
+            <span>约 {getReadingTime(post.body ?? '')} 分钟</span>
+            {post.data.tags.length > 0 && (
+              <span class="tag-list">
+                {post.data.tags.map((tag) => (
+                  <span class="tag">#{tag}</span>
+                ))}
+              </span>
+            )}
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="section-more">
+      <a href="/blog" class="more-link">阅读全部文章 →</a>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+  <section id="experience">
+    <div class="section-tag">05 &nbsp; experience</div>
+    <h2>经历摘要</h2>
+
+    <div class="timeline fade-in">
+      {latestExperience.map((item) => (
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-period">{item.period}</div>
+          <div class="timeline-company">{item.company}</div>
+          <div class="timeline-role">
+            {item.role}
+            <span class="role-badge">{item.badge}</span>
+          </div>
+          <div class="timeline-content">
+            <ul class="timeline-list">
+              {item.points.slice(0, 3).map((point) => (
+                <li>{point}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="section-more">
+      <a href="/resume" class="more-link">查看完整简历 →</a>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+  <Contact />
+
+  <Footer />
+</BaseLayout>

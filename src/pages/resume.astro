@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Experience from '../components/Experience.astro';
+import Education from '../components/Education.astro';
+import { site } from '../config/site';
+import { projects } from '../data/projects';
+import { skillGroups, type SkillGroup } from '../data/skills';
+import { advantages } from '../data/resume';
+
+// 简历页聚合全部事实数据；打印样式见 global.css 的 @media print
+const allSkills = skillGroups.flatMap((g: SkillGroup) => g.tags.map((t) => t.name));
+---
+
+<BaseLayout
+  title="简历 · 龚曦"
+  description="龚曦的在线简历——Java / Android 全栈开发，26 届应届生，求职意向城市：深圳、武汉、广州。"
+>
+  <Header />
+
+  <div class="page-hero">
+    <div class="section-tag">resume</div>
+    <h1>简历</h1>
+    <p class="page-hero-desc">
+      {site.availability} · 期望城市：{site.seekingCities.join('、')}
+    </p>
+    <div class="hero-btns no-print" style="margin-top: 1.5rem;">
+      <button class="btn btn-primary" onclick="window.print()">打印 / 导出 PDF</button>
+      <a class="btn btn-ghost" href={`mailto:${site.email}`}>发邮件联系</a>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <section style="padding: 0 0 4rem;">
+      <h2 style="margin-bottom: 1.5rem;">核心优势</h2>
+      <div class="advantages-list">
+        {advantages.map((text, i) => (
+          <div class="advantage-item">
+            <span class="adv-num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="adv-text">{text}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section style="padding: 0 0 4rem;">
+      <h2 style="margin-bottom: 1.5rem;">技能总览</h2>
+      <div class="skill-tags">
+        {allSkills.map((name) => (
+          <span class="skill-tag primary">{name}</span>
+        ))}
+      </div>
+    </section>
+
+    <Experience />
+
+    <div style="padding: 0 0 4rem;">
+      <h2 style="margin-bottom: 1.5rem;">项目经历</h2>
+      <div class="projects-grid">
+        {projects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </div>
+
+    <Education />
+  </div>
+
+  <Footer />
+</BaseLayout>

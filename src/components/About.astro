@@ -1,0 +1,23 @@
+---
+import { aboutParagraphs, advantages } from '../data/resume';
+---
+
+<section id="about">
+  <div class="section-tag">01 &nbsp; about me</div>
+  <h2>个人优势</h2>
+
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      {aboutParagraphs.map((p) => <p>{p}</p>)}
+    </div>
+
+    <div class="advantages-list fade-in">
+      {advantages.map((text, i) => (
+        <div class="advantage-item">
+          <span class="adv-num">{String(i + 1).padStart(2, '0')}</span>
+          <span class="adv-text">{text}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

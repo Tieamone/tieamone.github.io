@@ -1,0 +1,28 @@
+---
+import { site } from '../config/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div>
+    Built with <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a>
+    by {site.author} &nbsp;·&nbsp; Java / Android Developer &nbsp;·&nbsp; {year}
+  </div>
+</footer>
+
+<script>
+  // 滚动渐入动画
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+</script>

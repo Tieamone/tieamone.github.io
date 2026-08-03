@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import About from '../components/About.astro';
+import Skills from '../components/Skills.astro';
+import Education from '../components/Education.astro';
+import Contact from '../components/Contact.astro';
+---
+
+<BaseLayout
+  title="关于 · 龚曦"
+  description="关于龚曦——全栈开发者，主攻 Android 原生开发与 Java 后端，26 届应届生。"
+>
+  <Header />
+
+  <div class="page-hero">
+    <div class="section-tag">about</div>
+    <h1>关于我</h1>
+    <p class="page-hero-desc">工程师不只是写代码——而是解决问题、构建可持续运行的系统。</p>
+  </div>
+
+  <About />
+
+  <div class="section-divider"></div>
+  <Skills />
+
+  <div class="section-divider"></div>
+  <Education />
+
+  <div class="section-divider"></div>
+  <Contact />
+
+  <Footer />
+</BaseLayout>

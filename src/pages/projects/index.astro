@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { projects } from '../../data/projects';
+---
+
+<BaseLayout
+  title="项目 · 龚曦"
+  description="龚曦的项目经历——智能装修全流程管理平台、Novel AI、安卓五子棋等全栈与 Android 项目。"
+>
+  <Header />
+
+  <div class="page-hero">
+    <div class="section-tag">projects</div>
+    <h1>项目经历</h1>
+    <p class="page-hero-desc">从零构建的完整产品闭环——从数据库设计到移动端交互。</p>
+  </div>
+
+  <div class="page-content">
+    <div class="projects-grid">
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>

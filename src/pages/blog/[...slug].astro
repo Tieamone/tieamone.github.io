@@ -1,0 +1,88 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getPublishedPosts, getReadingTime, formatDate, type BlogPost } from '../../utils/blog';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return posts.map((post, index) => ({
+    params: { slug: post.id },
+    props: {
+      post,
+      // 列表按日期倒序：index-1 是更新的一篇（prev），index+1 是更早的一篇（next）
+      prev: index > 0 ? posts[index - 1] : null,
+      next: index < posts.length - 1 ? posts[index + 1] : null,
+    },
+  }));
+}
+
+interface Props {
+  post: BlogPost;
+  prev: BlogPost | null;
+  next: BlogPost | null;
+}
+
+const { post, prev, next } = Astro.props;
+const { Content } = await render(post);
+const readingTime = getReadingTime(post.body ?? '');
+---
+
+<BaseLayout
+  title={`${post.data.title} · 龚曦`}
+  description={post.data.description}
+  type="article"
+  publishedAt={post.data.publishedAt}
+  modifiedAt={post.data.updatedAt}
+  tags={post.data.tags}
+  image={post.data.cover}
+>
+  <Header />
+
+  <article class="article-page">
+    <header class="article-header">
+      <a class="article-back" href="/blog">← 返回博客</a>
+      <h1 class="article-title">{post.data.title}</h1>
+      <div class="article-meta">
+        <span>发布于 {formatDate(post.data.publishedAt)}</span>
+        {post.data.updatedAt && (
+          <span>更新于 {formatDate(post.data.updatedAt)}</span>
+        )}
+        <span>约 {readingTime} 分钟</span>
+      </div>
+      {post.data.tags.length > 0 && (
+        <div class="tag-list">
+          {post.data.tags.map((tag) => (
+            <span class="tag">#{tag}</span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <nav class="article-nav" aria-label="继续阅读">
+      <div class="article-nav-heading">继续阅读</div>
+      <div class="article-nav-grid">
+        {prev ? (
+          <a class="article-nav-link" href={`/blog/${prev.id}`}>
+            <div class="article-nav-label">← 上一篇（更新）</div>
+            <div class="article-nav-title">{prev.data.title}</div>
+          </a>
+        ) : <span class="article-nav-link empty" />}
+        {next ? (
+          <a class="article-nav-link next" href={`/blog/${next.id}`}>
+            <div class="article-nav-label">下一篇（更早）→</div>
+            <div class="article-nav-title">{next.data.title}</div>
+          </a>
+        ) : <span class="article-nav-link empty" />}
+      </div>
+      <a class="article-back-list" href="/blog">返回文章列表 →</a>
+    </nav>
+  </article>
+
+  <Footer />
+</BaseLayout>

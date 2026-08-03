@@ -1,0 +1,23 @@
+---
+import { skillGroups } from '../data/skills';
+---
+
+<section id="skills" class="skills-section">
+  <div class="skills-inner">
+    <div class="section-tag">02 &nbsp; capabilities</div>
+    <h2>技术能力</h2>
+
+    <div class="skills-grid fade-in">
+      {skillGroups.map((group) => (
+        <div class="skill-card">
+          <div class="skill-card-label">{group.label}</div>
+          <div class="skill-tags">
+            {group.tags.map((tag) => (
+              <span class={`skill-tag ${tag.variant}`}>{tag.name}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

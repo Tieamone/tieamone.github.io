@@ -1,5 +1,5 @@
 /**
- * 技能数据 —— 从 legacy-index.html 提取，事实内容未做任何改动。
+ * 技能数据 —— 首页、关于页与简历页共用。
  */
 
 export type SkillVariant = 'primary' | 'secondary' | 'tertiary';
@@ -15,11 +15,15 @@ export const skillGroups: SkillGroup[] = [
     tags: [
       { name: 'Java', variant: 'primary' },
       { name: 'Spring Boot', variant: 'primary' },
+      { name: '讯曼框架', variant: 'primary' },
       { name: 'Spring Data JPA', variant: 'primary' },
       { name: 'PHP', variant: 'primary' },
       { name: 'MySQL', variant: 'primary' },
+      { name: 'SQL 调优 / 数据清理', variant: 'primary' },
+      { name: 'Redis', variant: 'primary' },
       { name: 'H2', variant: 'primary' },
       { name: 'WebSocket', variant: 'primary' },
+      { name: 'TCP 设备通信', variant: 'primary' },
       { name: 'RESTful API', variant: 'primary' },
       { name: 'RBAC', variant: 'primary' },
     ],
@@ -38,6 +42,7 @@ export const skillGroups: SkillGroup[] = [
   {
     label: '// 前端 · Frontend',
     tags: [
+      { name: 'uni-app', variant: 'tertiary' },
       { name: 'Vue 3', variant: 'tertiary' },
       { name: 'TypeScript', variant: 'tertiary' },
       { name: 'Element Plus', variant: 'tertiary' },
@@ -49,8 +54,12 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    label: '// 工具链 · Tooling',
+    label: '// 部署与工具 · Deployment & Tooling',
     tags: [
+      { name: 'Nginx', variant: 'primary' },
+      { name: '服务器部署 / 运维', variant: 'primary' },
+      { name: 'SSH', variant: 'primary' },
+      { name: 'OSS 对象存储', variant: 'primary' },
       { name: 'Git / GitLab', variant: 'primary' },
       { name: 'Gradle', variant: 'primary' },
       { name: 'Python', variant: 'secondary' },

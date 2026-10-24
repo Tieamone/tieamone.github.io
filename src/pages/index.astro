@@ -20,8 +20,8 @@ const featuredProjects = projects.filter((p) => p.featured).concat(
 // 最新文章：最多 3 篇
 const latestPosts = (await getPublishedPosts()).slice(0, 3);
 
-// 经历摘要：首页只取最近 1 条
-const latestExperience = experience.slice(0, 1);
+// 经历摘要：展示最近两段任职，包含返聘与前期全栈开发成果
+const latestExperience = experience.slice(0, 2);
 ---
 
 <BaseLayout>
@@ -97,7 +97,7 @@ const latestExperience = experience.slice(0, 1);
           </div>
           <div class="timeline-content">
             <ul class="timeline-list">
-              {item.points.slice(0, 3).map((point) => (
+              {item.points.slice(0, 4).map((point) => (
                 <li>{point}</li>
               ))}
             </ul>

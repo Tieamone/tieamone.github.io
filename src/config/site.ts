@@ -62,7 +62,7 @@ export const site: SiteConfig = {
   name: '龚 曦',
   title: '龚曦 · Full-Stack Developer',
   description:
-    '龚曦的个人网站——全栈开发者，专注 Android 原生与 Spring Boot 后端。项目经历、技术博客与简历。',
+    '龚曦的个人网站——Spring Boot、uni-app 与 Android 全栈开发，具备设备通信、MySQL 数据维护及服务器部署经验。项目经历、技术博客与简历。',
   url: 'https://tieamone.github.io',
   logo: 'gongxi',
   author: '龚曦',
@@ -77,13 +77,13 @@ export const site: SiteConfig = {
   blog: '/blog',
   avatar: '',
   resume: '/resume',
-  availability: 'Available · 26届应届生 · 随时到岗',
+  availability: '远程在职 · 企业级项目二次开发与技术支持',
   seekingCities: ['深圳', '武汉', '广州'],
   typingPhrases: [
     'Java Backend Developer',
     'Android Native Developer',
     'Full-Stack Engineer',
-    'Spring Boot · Vue 3 · Android',
+    'Spring Boot · uni-app · Android',
   ],
   socialLinks: [
     { label: 'GitHub', href: 'https://github.com/Tieamone' },

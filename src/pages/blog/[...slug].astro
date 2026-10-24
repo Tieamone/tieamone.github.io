@@ -3,6 +3,7 @@ import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import { site } from '../../config/site';
 import { getPublishedPosts, getReadingTime, formatDate, type BlogPost } from '../../utils/blog';
 
 export async function getStaticPaths() {
@@ -30,7 +31,7 @@ const readingTime = getReadingTime(post.body ?? '');
 ---
 
 <BaseLayout
-  title={`${post.data.title} · 龚曦`}
+  title={`${post.data.title} · ${site.author}`}
   description={post.data.description}
   type="article"
   publishedAt={post.data.publishedAt}
@@ -61,6 +62,9 @@ const readingTime = getReadingTime(post.body ?? '');
     </header>
 
     <div class="prose">
+      {post.data.paper && (
+        <p><a href={post.data.paper} target="_blank" rel="noopener noreferrer">阅读 / 下载论文 PDF ↗</a></p>
+      )}
       <Content />
     </div>
 

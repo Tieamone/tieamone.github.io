@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>内容管理</title>
+  <link rel="stylesheet" href="./admin.css">
+</head>
+<body>
+  <main id="welcome">
+    <a href="/" class="back">← 返回网站</a>
+    <p class="eyebrow">CONTENT STUDIO</p>
+    <h1>管理你的网站内容</h1>
+    <p>修改个人资料与简历，撰写博客和论文，上传图片与 PDF。</p>
+    <p id="status" role="status">正在检查登录配置…</p>
+    <button id="login" hidden>使用 GitHub 登录</button>
+    <p id="hint"></p>
+    <a id="guide" href="https://github.com/Tieamone/tieamone.github.io/blob/main/docs/content-admin.md" target="_blank" rel="noopener noreferrer" hidden>查看首次启用说明 ↗</a>
+    <noscript>请启用 JavaScript 后使用内容后台。</noscript>
+  </main>
+  <aside id="notice" hidden>
+    <a href="/">返回网站</a>
+    <span id="notice-text">发布后需等待网站构建完成。此仓库公开，草稿和已上传附件也不是私密存储。</span>
+    <a href="https://github.com/Tieamone/tieamone.github.io/actions" target="_blank" rel="noopener noreferrer">查看发布进度 ↗</a>
+  </aside>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

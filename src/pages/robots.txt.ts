@@ -8,6 +8,7 @@ export function GET(context: APIContext) {
 
   const body = `User-agent: *
 Allow: /
+Disallow: /admin/
 
 Sitemap: ${sitemapURL}
 `;

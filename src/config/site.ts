@@ -1,14 +1,11 @@
+import data from '../data/content/site.json';
+import { siteSchema } from '../data/content-schema.js';
+
+const content = siteSchema.parse(data);
+
 /**
- * 站点全局配置 —— 个人信息唯一来源（Single Source of Truth）
- *
- * ⚠️ 部署前必须替换的占位字段：
- *    - url           → 真实域名（同时修改 astro.config.mjs 的 site）
- *    - email / phone / phoneDisplay → 真实联系方式
- *    - github        → 真实 GitHub 地址
- *    - avatar        → 真实头像路径（当前为空，页面不引用，避免虚假头像）
- *
- * 组件不硬编码任何联系方式，全部从此文件读取，
- * 以修复旧版 index.html 中 mailto:/tel: 与展示文本不一致的问题。
+ * 后台维护 content/site.json；此处验证后提供给页面和组件。
+ * 修改站点域名时还需要同步 Astro、后台和认证服务配置。
  */
 
 export interface SocialLink {
@@ -17,6 +14,9 @@ export interface SocialLink {
 }
 
 export interface SiteConfig {
+  heroDescription: string;
+  contactDescription: string;
+  coreStack: string[];
   /** 页面主标题用名（带空格排版） */
   name: string;
   /** 默认 <title> 与 og:site_name */
@@ -31,7 +31,7 @@ export interface SiteConfig {
   author: string;
   /** 英文名（预留） */
   nameEn: string;
-  // ---- 联系方式（占位，部署前替换） ----
+  // ---- 联系方式 ----
   email: string;
   /** tel: 链接值 */
   phone: string;
@@ -40,7 +40,7 @@ export interface SiteConfig {
   /** 是否在页面公开展示电话（false 时不渲染 tel 链接与号码） */
   phonePublic: boolean;
   location: string;
-  /** GitHub 地址（占位，部署前替换） */
+  /** GitHub 地址 */
   github: string;
   /** 博客入口路径 */
   blog: string;
@@ -54,41 +54,11 @@ export interface SiteConfig {
   seekingCities: string[];
   /** Hero 打字动画词组 */
   typingPhrases: string[];
-  /** 社交链接列表（占位，部署前替换） */
+  /** 社交链接列表 */
   socialLinks: SocialLink[];
 }
 
-export const site: SiteConfig = {
-  name: '龚 曦',
-  title: '龚曦 · Full-Stack Developer',
-  description:
-    '龚曦的个人网站——Spring Boot、uni-app 与 Android 全栈开发，具备设备通信、MySQL 数据维护及服务器部署经验。项目经历、技术博客与简历。',
-  url: 'https://tieamone.github.io',
-  logo: 'gongxi',
-  author: '龚曦',
-  nameEn: 'Gong Xi',
-  email: '13895308608@163.com',
-  phone: '+8613895308608',
-  phoneDisplay: '138 9530 8608',
-  // phonePublic=false：网站页面不渲染手机号与 tel 链接
-  phonePublic: false,
-  location: '中国 · 武汉',
-  github: 'https://github.com/Tieamone',
-  blog: '/blog',
-  avatar: '',
-  resume: '/resume',
-  availability: '远程在职 · 企业级项目二次开发与技术支持',
-  seekingCities: ['深圳', '武汉', '广州'],
-  typingPhrases: [
-    'Java Backend Developer',
-    'Android Native Developer',
-    'Full-Stack Engineer',
-    'Spring Boot · uni-app · Android',
-  ],
-  socialLinks: [
-    { label: 'GitHub', href: 'https://github.com/Tieamone' },
-  ],
-};
+export const site: SiteConfig = content;
 
 export const navLinks = [
   { href: '/#about', label: '关于' },

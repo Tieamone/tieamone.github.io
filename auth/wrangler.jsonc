@@ -1,0 +1,14 @@
+{
+  "name": "tieamone-cms-auth",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-24",
+  "workers_dev": true,
+  "vars": {
+    "SITE_ORIGIN": "https://tieamone.github.io",
+    "ALLOWED_GITHUB_USER": "Tieamone",
+    "GITHUB_REPO": "Tieamone/tieamone.github.io"
+  },
+  "observability": {
+    "enabled": false
+  }
+}

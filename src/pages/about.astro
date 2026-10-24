@@ -6,11 +6,12 @@ import About from '../components/About.astro';
 import Skills from '../components/Skills.astro';
 import Education from '../components/Education.astro';
 import Contact from '../components/Contact.astro';
+import { site } from '../config/site';
 ---
 
 <BaseLayout
-  title="关于 · 龚曦"
-  description="关于龚曦——Spring Boot、uni-app 与 Android 全栈开发工程师，目前远程承担企业级项目二次开发与技术支持。"
+  title={`关于 · ${site.author}`}
+  description={site.description}
 >
   <Header />
 

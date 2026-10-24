@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import { site } from '../../config/site';
 import { getPublishedPosts, getAllTags, getReadingTime, formatDate } from '../../utils/blog';
 
 const posts = await getPublishedPosts();
@@ -9,8 +10,8 @@ const tags = getAllTags(posts);
 ---
 
 <BaseLayout
-  title="博客 · 龚曦"
-  description="龚曦的技术博客——Java、Spring Boot、Android 与全栈开发的实践记录。"
+  title={`博客 · ${site.author}`}
+  description={`${site.author}的技术博客与论文。`}
 >
   <Header />
 

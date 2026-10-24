@@ -1,0 +1,46 @@
+{
+  "name": "龚 曦",
+  "title": "龚曦 · Full-Stack Developer",
+  "description": "龚曦的个人网站——Spring Boot、uni-app 与 Android 全栈开发，具备设备通信、MySQL 数据维护及服务器部署经验。项目经历、技术博客与简历。",
+  "url": "https://tieamone.github.io",
+  "logo": "gongxi",
+  "author": "龚曦",
+  "nameEn": "Gong Xi",
+  "email": "13895308608@163.com",
+  "phone": "+8613895308608",
+  "phoneDisplay": "138 9530 8608",
+  "phonePublic": false,
+  "location": "中国 · 武汉",
+  "github": "https://github.com/Tieamone",
+  "blog": "/blog",
+  "avatar": "",
+  "resume": "/resume",
+  "availability": "远程在职 · 企业级项目二次开发与技术支持",
+  "seekingCities": [
+    "深圳",
+    "武汉",
+    "广州"
+  ],
+  "typingPhrases": [
+    "Java Backend Developer",
+    "Android Native Developer",
+    "Full-Stack Engineer",
+    "Spring Boot · uni-app · Android"
+  ],
+  "socialLinks": [
+    {
+      "label": "GitHub",
+      "href": "https://github.com/Tieamone"
+    }
+  ],
+  "heroDescription": "全栈开发工程师，使用 Spring Boot、uni-app 与 Android 原生技术，参与业务开发、设备通信和 MySQL 数据维护，具备整套服务器部署与运维经验。目前远程承担企业级项目二次开发和技术支持。",
+  "contactDescription": "目前远程从事企业级项目二次开发与技术支持。欢迎交流 Spring Boot、uni-app、Android 开发及服务器部署经验。",
+  "coreStack": [
+    "Spring Boot",
+    "uni-app",
+    "Android",
+    "MySQL",
+    "Redis",
+    "Nginx"
+  ]
+}

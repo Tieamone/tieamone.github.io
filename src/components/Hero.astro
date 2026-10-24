@@ -2,7 +2,7 @@
 import { site } from '../config/site';
 
 const githubDisplay = site.github.replace(/^https?:\/\//, '');
-const coreStack = ['Spring Boot', 'uni-app', 'Android', 'MySQL', 'Redis', 'Nginx'];
+const coreStack = site.coreStack;
 ---
 
 <section class="hero" id="home">
@@ -23,7 +23,7 @@ const coreStack = ['Spring Boot', 'uni-app', 'Android', 'MySQL', 'Redis', 'Nginx
       <p class="hero-role"><span id="typed-role"></span><span class="cursor"></span></p>
 
       <p class="hero-desc">
-        全栈开发工程师，使用 Spring Boot、uni-app 与 Android 原生技术，参与业务开发、设备通信和 MySQL 数据维护，具备整套服务器部署与运维经验。目前远程承担企业级项目二次开发和技术支持。
+        {site.heroDescription}
       </p>
 
       <div class="hero-btns">
@@ -58,11 +58,11 @@ const coreStack = ['Spring Boot', 'uni-app', 'Android', 'MySQL', 'Redis', 'Nginx
         </div>
         <pre class="terminal-body"><code><span class="c-muted">// developer profile</span>
 <span class="c-key">const</span> <span class="c-var">dev</span> = {
-  <span class="c-prop">name</span>: <span class="c-str">'龚曦'</span>,
+  <span class="c-prop">name</span>: <span class="c-str">'{site.author}'</span>,
   <span class="c-prop">role</span>: <span class="c-str">'Full-Stack Engineer'</span>,
   <span class="c-prop">focus</span>: [<span class="c-str">'Java'</span>, <span class="c-str">'Android'</span>, <span class="c-str">'Spring'</span>],
-  <span class="c-prop">status</span>: <span class="c-str">'working remotely'</span>,
-  <span class="c-prop">location</span>: <span class="c-str">'武汉 · 26届'</span>,
+  <span class="c-prop">status</span>: <span class="c-str">'{site.availability}'</span>,
+  <span class="c-prop">location</span>: <span class="c-str">'{site.location}'</span>,
 };
 
 <span class="c-fn">build</span>(<span class="c-var">dev</span>) <span class="c-muted">// shipping 🚀</span></code></pre>
